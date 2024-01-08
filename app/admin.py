@@ -1,7 +1,7 @@
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin, BaseView, expose, AdminIndexView
 from app import app, db, dao
-from app.stu import Year,Class,Subject, Student, UserRoleEnum
+from app.stu import Year, Grade, Subject, Score, Student, User, UserRoleEnum
 from flask_login import logout_user, current_user
 from flask import redirect, request
 
@@ -22,7 +22,7 @@ class MyStudentView(AuthenticatedAdmin):
     can_export = True
     column_searchable_list = ['MSHS', 'name']
     column_filters = ['MSHS', 'name']
-    column_editable_list = ['name', 'birth', 'address', 'email']
+    column_editable_list = ['name', 'number', 'birth', 'address', 'email']
     edit_modal = True
 
 
@@ -34,15 +34,24 @@ class MyYearView(AuthenticatedAdmin):
     edit_modal = True
 
 class MySubjectView(AuthenticatedAdmin):
-    column_list = ['id', 'name', 'fifteenTest', 'forty_fiveTest', 'finalTest']
+    column_list = ['id', 'students', 'name']
     can_export = True
     column_searchable_list = ['id', 'name']
     column_filters = ['id', 'name']
-    column_editable_list = ['name','fifteenTest', 'forty_fiveTest', 'finalTest']
+    column_editable_list = ['name']
     edit_modal = True
 
-class MyClassView(AuthenticatedAdmin):
-    column_list = ['id', 'name', 'quantity']
+class MyScoreView(AuthenticatedAdmin):
+    column_list = ['id', 'fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
+    can_export = True
+    column_searchable_list = ['id',]
+    column_filters = ['id']
+    column_editable_list = ['fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
+    edit_modal = True
+
+
+class MyGradeView(AuthenticatedAdmin):
+    column_list = ['id', 'students', 'name', 'quantity']
     can_export = True
     column_searchable_list = ['id', 'name']
     column_filters = ['id', 'name']
@@ -65,7 +74,8 @@ class LogoutView(AuthenticatedUser):
 
 admin.add_view(MyYearView(Year, db.session))
 admin.add_view(MyStudentView(Student, db.session))
-admin.add_view(MyClassView(Class, db.session))
+admin.add_view(MyGradeView(Grade, db.session))
 admin.add_view(MySubjectView(Subject, db.session))
+admin.add_view(MyScoreView(Score, db.session))
 admin.add_view(StatsView(name='Statics'))
 admin.add_view(LogoutView(name='Logout'))

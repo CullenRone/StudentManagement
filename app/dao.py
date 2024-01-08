@@ -1,4 +1,4 @@
-from app.stu import Year,Class,Subject, Student, User
+from app.stu import Year, Grade, Student, Score, User
 from app import app, db
 import hashlib
 from flask_login import current_user
@@ -7,54 +7,70 @@ import cloudinary.uploader
 
 
 def load_years():
-    return Year.query.all()
-    # return [{
-    #     'id': 1,
-    #     'name': 'Kì I - Năm học:2023-2024'
-    # }, {
-    #     'id': 2,
-    #     'name': 'Kì II - Năm học:2023-2024'
-    # }]
-
-def load_classes():
-    # return Class.query.all()
+    # return Year.query.all()
     return [{
-        'id':1,
-        'name':' Khối 10',
-        'quantity':5
+        'id': 1,
+        'name': 'Kì I - Năm học:2023-2024'
     }, {
         'id': 2,
-        'name': ' Khối 11',
-        'quantity':6
-    }, {
-        'id': 3,
-        'name': ' Khối 12',
-        'quantity': 7
+        'name': 'Kì II - Năm học:2023-2024'
     }]
 
+def load_grades():
+    # return Class.query.all()
+    return [{
+        'id': 1,
+        'name': 'Khối 10',
+        'quantity': 5
+    }, {
+        'id': 2,
+        'name': 'Khối 11',
+        'quantity': 6
+    }, {
+        'id': 3,
+        'name': 'Khối 12',
+        'quantity': 7
+    }]
+#
 def load_subjects():
      # return Subject.query.all()
     return [{
         'id': 1,
-        'name': 'Math',
-        'fifteenTest': 8.0,
-        'forty_fiveTest': 8.0,
+        'name': 'Math'
+    }, {
+        'id': 2,
+        'name': 'Literature'
+    }, {
+        'id': 3,
+        'name': 'English'
+    }]
+
+def load_scores():
+    return [{
+        'id': 1,
+        'fifteenTest1': 8.0,
+        'fifteenTest2': 8.0,
+        'forty_fiveTest1': 8.0,
+        'forty_fiveTest2': 8.0,
         'finalTest': 8.0
     }, {
         'id': 2,
-        'name': 'Literature',
-        'fifteenTest': 8.0,
-        'forty_fiveTest': 8.0,
-        'finalTest': 8.0
+        'fifteenTest1': 9.0,
+        'fifteenTest2': 9.0,
+        'forty_fiveTest1': 9.0,
+        'forty_fiveTest2': 9.0,
+        'finalTest': 9.0
     }, {
         'id': 3,
-        'name': 'English',
-        'fifteenTest': 8.0,
-        'forty_fiveTest': 8.0,
-        'finalTest': 8.0
+        'fifteenTest1': 8.5,
+        'fifteenTest2': 8.5,
+        'forty_fiveTest1': 9.0,
+        'forty_fiveTest2': 9.5,
+        'finalTest': 10.0
     }]
 
-def load_students(kw=None, year_id=None, page=None):
+
+def load_students(kw=None, year_id=None, grade_id=None, subject_id=None, score_id=None, page=None):
     # students = Student.query
     students = [{
         'MSHS': 101,
@@ -114,9 +130,11 @@ def load_students(kw=None, year_id=None, page=None):
 
     if kw:
         students = [s for s in students if s['name'].find(kw) >= 0]
+        # lấy danh sách học sinh khi tra cứu
 
     if year_id:
         students = students.filter(Student.year_id.__eq__(year_id))
+
 
     if page:
         page = int(page)

@@ -14,6 +14,13 @@
                     <a class="nav-link" href="/?year_id={{y.id}}">{{ y.name }}</a>
                 </li>
                 {% endfor %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="/classA">&#xf51c; Lớp học A</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link active" href="/classB">&#xf51c; Lớp học B</a>
+                </li>
+
 
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
