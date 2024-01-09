@@ -8,20 +8,18 @@
         {% endfor %}
     </ul>
     <div class="row">
-        {% for s in students %}
+        {% for s in student %}
         <div class="col-xs-12 col-md-3" style="padding: 5px;">
             <div class="card">
                 <img class="card-img-top" src="{{ s.image }}" alt="Card image">
                 <div class="card-body">
                     <h4 class="card-title">{{ s.name }}</h4>
                     <p class="card-text">{{( s.id )}}</p>
-                    <a href="/students/{{s.id}}" class="btn btn-primary">Xem chi tiết</a>
+                    <a href="/student/{{s.id}}" class="btn btn-primary">Xem chi tiết</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </section>
-
-
 {% endblock %}

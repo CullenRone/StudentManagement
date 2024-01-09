@@ -28,13 +28,13 @@ class MyStudentView(AuthenticatedAdmin):
 
 
 class MyYearView(AuthenticatedAdmin):
-    column_list = ['id', 'students', 'name']
+    column_list = ['id', 'name']
     can_export = True
-    column_editable_list = ['students']
+    column_editable_list = ['name']
     edit_modal = True
 
 class MySubjectView(AuthenticatedAdmin):
-    column_list = ['id', 'students', 'name']
+    column_list = ['id', 'name']
     can_export = True
     column_searchable_list = ['id', 'name']
     column_filters = ['id', 'name']
@@ -42,16 +42,16 @@ class MySubjectView(AuthenticatedAdmin):
     edit_modal = True
 
 class MyScoreView(AuthenticatedAdmin):
-    column_list = ['id', 'fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
+    column_list = ['id','students', 'fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
     can_export = True
     column_searchable_list = ['id',]
     column_filters = ['id']
-    column_editable_list = ['fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
+    column_editable_list = ['students','fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
     edit_modal = True
 
 
 class MyGradeView(AuthenticatedAdmin):
-    column_list = ['id', 'students', 'name', 'quantity']
+    column_list = ['id', 'name', 'quantity']
     can_export = True
     column_searchable_list = ['id', 'name']
     column_filters = ['id', 'name']
