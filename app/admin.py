@@ -5,6 +5,7 @@ from app.stu import Year, Grade, Subject, Score, Student, User, UserRoleEnum
 from flask_login import logout_user, current_user
 from flask import redirect, request
 
+
 admin = Admin(app=app, name='QUẢN TRỊ LỚP HỌC SINH', template_mode='bootstrap4')
 
 
@@ -44,7 +45,7 @@ class MySubjectView(AuthenticatedAdmin):
 class MyScoreView(AuthenticatedAdmin):
     column_list = ['id','students', 'fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
     can_export = True
-    column_searchable_list = ['id',]
+    column_searchable_list = ['id']
     column_filters = ['id']
     column_editable_list = ['students','fifteenTest1', 'fifteenTest2', 'forty_fiveTest1', 'forty_fiveTest2', 'finalTest']
     edit_modal = True
